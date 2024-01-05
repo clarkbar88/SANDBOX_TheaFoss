@@ -18,35 +18,32 @@ library(magrittr)
 library(RColorBrewer)
 
 
+source("scripts/backtrans.R")
+source("scripts/ci_band_lm_Nov15.R")
+source("scripts/ci_boot_Nov15.R")
+source("scripts/ci_band_plot_Nov15.R")
+source("scripts/ci_compute.R")
 source("scripts/convex_hull.R")
 source("scripts/eplot.R")
+source("scripts/impute_km_clarkedit.R")
 source("scripts/mc_vector.R")
 source("scripts/Mode.R")
 source("scripts/oneway_mc.R")
 source("scripts/oneway_mc_plot.R")
+source("scripts/pp_km.R")
+source("scripts/pp_tricube.R")
 source("scripts/pus.R")
+source("scripts/trans.R")
 source("scripts/trend_lm.R")
 source("scripts/trend_map.R")
 source("scripts/trend_map_compute.R")
 source("scripts/trend_map_plot.R")
+source("scripts/whdquantile.R")
+source("scripts/wquantile_generic.R")
 
 
-
-
-
-# source('ci_band_lm.R')
-# source('ci_band_plot.R')
 # source('add_gis.R')
 # source('ci_compute.R')
-
-# source('ci_boot.R')
-# source('whdquantile.R')
-# source('wquantile_generic.R')
-# source('impute_km.R')
-#  source('pp_km.R')
-#  source('trans.R')
-#  source('backtrans.R')
-#  source('pp_tricube.R')
 # source('pctdiff_boot.R')
 
 
