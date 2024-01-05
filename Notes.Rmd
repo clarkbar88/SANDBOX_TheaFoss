@@ -6,3 +6,4 @@ output: html_document
 ---
 
 Oneway tests: csvs are very close but not identical. Images are essentially identical.
+Goodness of fit tests are close but not identical. Ladder of powers shows slightly different results.
