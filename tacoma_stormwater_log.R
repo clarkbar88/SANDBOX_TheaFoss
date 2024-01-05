@@ -279,7 +279,6 @@ outfall.pair.cband.5y <- f %>% filter(date >= ymd('2017-01-01')) %>% group_by(co
 }) %>% ungroup()
 
 
-
 fn <- paste0(site.filetag,'_cband5y_',fdate,'.pdf')
 pdf(file=fn,w=11,h=8.5)
 outfall.cband.plots.5y <- outfall.pair.cband.5y %>% group_by(coc) %>% do(plot={
