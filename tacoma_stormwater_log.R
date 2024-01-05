@@ -151,30 +151,6 @@ tsplots.outfall.loess.5y <- f %>% group_by(coc) %>% filter(date >= ymd('2017-01-
 dev.off()
 
 
-## Violin Plots ----
-fn <- paste0(site.filetag,'_violinplots_ByOutfall_',fdate,'.pdf')
-pdf(file=fn,w=11,h=8.5)
-vplots.outfall <- f %>% group_by(coc) %>% do(plot={
-  tcoc <- .$coc[1]
-  print(tcoc)
-  hdr= paste0('Violin Plots for ',tcoc,' By Outfall')
-  print(eplot(.,thead=hdr,'violin',vx=locid,vfill=locid,rotate.lab = T,pt.size = 1.5))
-})
-dev.off()
-
-
-fn <- paste0(site.filetag,'_violinplots5y_ByOutfall_',fdate,'.pdf')
-pdf(file=fn,w=11,h=8.5)
-vplots.outfall.5y <- f %>% group_by(coc) %>% filter(date >= ymd('2017-01-01')) %>% do(plot={
-  tcoc <- .$coc[1]
-  print(tcoc)
-  hdr= paste0('Violin Plots for ',tcoc,' By Outfall Since 2017')
-  print(eplot(.,thead=hdr,'violin',vx=locid,vfill=locid,rotate.lab = T,pt.size = 1.5))
-})
-dev.off()
-
-
-
 
 # TREND TESTING/MAPPING ----
 
