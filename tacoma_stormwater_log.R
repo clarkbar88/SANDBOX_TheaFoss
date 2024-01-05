@@ -22,6 +22,8 @@ source("scripts/convex_hull.R")
 source("scripts/eplot.R")
 source("scripts/mc_vector.R")
 source("scripts/Mode.R")
+source("scripts/oneway_mc.R")
+source("scripts/oneway_mc_plot.R")
 source("scripts/pus.R")
 source("scripts/trend_lm.R")
 source("scripts/trend_map.R")
@@ -31,12 +33,10 @@ source("scripts/trend_map_plot.R")
 
 
 
-# source('oneway_mc.R')
+
 # source('ci_band_lm.R')
 # source('ci_band_plot.R')
 # source('add_gis.R')
-
-# source('oneway_mc_plot.R')
 # source('ci_compute.R')
 
 # source('ci_boot.R')
@@ -152,7 +152,6 @@ tsplots.outfall.loess.5y <- f %>% group_by(coc) %>% filter(date >= ymd('2017-01-
 dev.off()
 
 
-
 # TREND TESTING/MAPPING ----
 
 ## import coordinates
@@ -245,7 +244,6 @@ outfall.oneway.plots.5y <- outfall.oneway.tests.5y %>% group_by(coc) %>% do(plot
   print(oneway_mc_plot(td,hdr))
 }) %>% ungroup()
 dev.off()
-
 
 fn <- paste0(site.filetag,'_oneway_tests_',fdate,'.csv')
 write_excel_csv(outfall.oneway.tests,file=fn)
