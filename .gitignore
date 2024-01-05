@@ -1,2 +1,5 @@
 *.zip
 *.Rproj*
+.Rproj.user
+
+*.pdf

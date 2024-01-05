@@ -18,14 +18,17 @@ library(magrittr)
 library(RColorBrewer)
 
 
-# source('eplot.R')
+source("scripts/eplot.R")
+source("scripts/Mode.R")
+source("scripts/pus.R")
+
+
 # source('trend_map_compute.R')
 # source('trend_map_plot.R)
 # source('oneway_mc.R')
 # source('ci_band_lm.R')
 # source('ci_band_plot.R')
 # source('trend_map.R')
-# source('pus.R')
 # source('add_gis.R')
 # source('convex_hull.R')
 # source('oneway_mc_plot.R')
