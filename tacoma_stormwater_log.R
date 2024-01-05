@@ -117,7 +117,6 @@ tsplots.outfall <- f %>% group_by(coc) %>% do(plot={
 }) %>% ungroup()
 dev.off()
 
-
 fn <- paste0(site.filetag,'_tsplots5y_ByOutfall_',fdate,'.pdf')
 pdf(file=fn,w=11,h=8.5)
 tsplots.outfall.5y <- f %>% group_by(coc) %>% filter(date >= ymd('2017-01-01')) %>% do(plot={
