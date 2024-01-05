@@ -18,22 +18,27 @@ library(magrittr)
 library(RColorBrewer)
 
 
+source("scripts/convex_hull.R")
 source("scripts/eplot.R")
+source("scripts/mc_vector.R")
 source("scripts/Mode.R")
 source("scripts/pus.R")
+source("scripts/trend_lm.R")
+source("scripts/trend_map.R")
+source("scripts/trend_map_compute.R")
+source("scripts/trend_map_plot.R")
 
 
-# source('trend_map_compute.R')
-# source('trend_map_plot.R)
+
+
 # source('oneway_mc.R')
 # source('ci_band_lm.R')
 # source('ci_band_plot.R')
-# source('trend_map.R')
 # source('add_gis.R')
-# source('convex_hull.R')
+
 # source('oneway_mc_plot.R')
 # source('ci_compute.R')
-# source('mc_vector.R')
+
 # source('ci_boot.R')
 # source('whdquantile.R')
 # source('wquantile_generic.R')
@@ -76,11 +81,7 @@ coc.elim <- tst.coc %>% filter(max.d < ymd('2021-01-01') | min.d > ymd('2019-01-
 a02 <- a01 %>% filter(!coc %in% coc.elim)
 a02 <- a02 %>% mutate(locid=factor(locid,ordered = T))
 
-
 f <- a02
-
-
-
 
 # EXPLORE ----
 
@@ -155,21 +156,19 @@ dev.off()
 # TREND TESTING/MAPPING ----
 
 ## import coordinates
-outfall.loc0 <- read_excel('/Users/kcmacstat/MacStat/Herrera-Tacoma Project/EIMLocation2021_kc.xlsx')
-
+outfall.loc0 <- read_excel("data_raw/EIMLocation2021_kc.xlsx")
 outfall.loc <- outfall.loc0 %>% select(c(loc_id,loc_name,lon,lat)) %>% mutate(outfall=c('OF237B','OF235','OF245','OF243','OF254','OF230','OF237A','RG15CUW','FD2_237A','FD6_235','FD3NEW_230'))
 
-### approximate location of outfall OF248
+## approximate location of outfall OF248
 outfall.loc <- bind_rows(outfall.loc,tibble(loc_id='UNKNOWN',loc_name='APPROX_OF248',lon=-122.43,lat=47.248,outfall='OF248'))
-
 outfall.loc <- outfall.loc %>% mutate(locid=sub('OF','',outfall))
-
 
 ## construct trend maps by outfall and sediment trap
 tmp <- outfall.loc %>% select(locid,lon,lat)
 f <- f %>% left_join(.,tmp)
 f <- f %>% mutate(locid=factor(locid,ordered = T))
 
+## create outfall trend maps
 outfall.trend.map.hist <- f %>% group_by(coc) %>% do({
   td <- .
   tcoc <- td$coc[1]
