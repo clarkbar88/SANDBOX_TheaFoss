@@ -30,6 +30,7 @@ source("scripts/mc_vector.R")
 source("scripts/Mode.R")
 source("scripts/oneway_mc.R")
 source("scripts/oneway_mc_plot.R")
+source("scripts/pctdiff_boot_Nov15.R")
 source("scripts/pp_km.R")
 source("scripts/pp_tricube.R")
 source("scripts/pus.R")
@@ -44,7 +45,6 @@ source("scripts/wquantile_generic.R")
 
 # source('add_gis.R')
 # source('ci_compute.R')
-# source('pctdiff_boot.R')
 
 
 site <- 'Tacoma'; site.tag <- 'Tacoma'; site.filetag <- 'Tacoma_Stormwater'
@@ -311,10 +311,6 @@ write_excel_csv(outfall.pctdiff,file=fn)
 
 fn <- paste0(site.filetag,'_outfall_pctdiff_5y_',fdate,'.csv')
 write_excel_csv(outfall.pctdiff.5y,file=fn)
-
-
-
-
 
 # SAVE PROJECT ----
 fdate <- format.Date(Sys.Date(),format='%y%m%d')
