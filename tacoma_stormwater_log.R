@@ -151,7 +151,6 @@ tsplots.outfall.loess.5y <- f %>% group_by(coc) %>% filter(date >= ymd('2017-01-
 dev.off()
 
 
-
 ## Violin Plots ----
 fn <- paste0(site.filetag,'_violinplots_ByOutfall_',fdate,'.pdf')
 pdf(file=fn,w=11,h=8.5)
