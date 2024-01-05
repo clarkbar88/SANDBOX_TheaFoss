@@ -1,0 +1,8 @@
+---
+title: "Notes"
+author: "Regina Lionheart"
+date: "2024-01-05"
+output: html_document
+---
+
+Oneway tests: csvs are very close but not identical. Images are essentially identical.
