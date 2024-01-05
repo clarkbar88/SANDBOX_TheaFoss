@@ -64,7 +64,6 @@ fdate <- format.Date(Sys.Date(),format='%y%m%d')
 # WRANGLE ----
 
 a0 <- read_excel('data_raw/WY2021_lab_data_kc.xlsx',col_types = c(rep('text',3),rep('numeric',2),rep('text',3),rep('numeric',3),'date',rep('text',9),rep('numeric',9),rep('text',2)))
-a0 <- a0 %>% filter(CAS_RN %in% c("117-81-7")) # Works
 names(a0) <- tolower(names(a0))
 
 a00 <- a0 %>% select(-c(sys_loc_code,loc_number,`_237a_comp`,task_code,sys_sample_code,cipp_lining,halfnd,loghalfnd,totphthsum,number,forstats,forstats_5yr,forstats_2yr,validator_qualifiers))
@@ -91,8 +90,6 @@ f <- a02
 # EXPLORE ----
 
 # Goodness of Fit ----
-#trans, backtrans, pp_km
-
 fn <- paste0(site.filetag,'_GOF_ByOutfall_',fdate,'.pdf')
 pdf(file=fn,w=11,h=8.5)
 gof.example <- f |> nest_by(coc,locid) |> dplyr::mutate(out=list({
@@ -105,6 +102,7 @@ gof.example <- f |> nest_by(coc,locid) |> dplyr::mutate(out=list({
   print(paste(tcoc, tloc))
 })) |> ungroup() |> dplyr::select(c(coc,locid,out)) |> unnest(cols = c(out))
 dev.off()
+
 
 ## Box Plots ----
 fn <- paste0(site.filetag,'_boxplots_ByOutfall_',fdate,'.pdf')
