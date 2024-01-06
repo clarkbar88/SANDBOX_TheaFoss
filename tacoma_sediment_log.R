@@ -173,7 +173,7 @@ dev.off()
 # TREND TESTING/MAPPING ----
 
 ## import coordinates
-outfall.loc0 <- read_excel('/Users/kcmacstat/MacStat/Herrera-Tacoma Project/EIMLocation2021_kc.xlsx')
+outfall.loc0 <- read_excel("data_raw/EIMLocation2021_kc.xlsx")
 trap.loc0 <- read_excel('/Users/kcmacstat/MacStat/Herrera-Tacoma Project/2010 SED TRAP LOCATIONS_kc.xlsx')
 
 outfall.loc <- outfall.loc0 %>% select(c(loc_id,loc_name,lon,lat)) %>% mutate(outfall=c('OF237B','OF235','OF245','OF243','OF254','OF230','OF237A','RG15CUW','FD2_237A','FD6_235','FD3NEW_230'))
