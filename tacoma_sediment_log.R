@@ -21,7 +21,6 @@ library(RColorBrewer)
 source("scripts/eplot.R")
 source("scripts/pus.R")
 
-## source('eplot.R')
 ## source('trend_map_compute.R')
 ## source('trend_map_plot.R)
 ## source('oneway_mc.R')
@@ -82,21 +81,14 @@ loc.vec <- a03 %>% pus(locid)
 of.tab <- tibble(locid=loc.vec,outfall=c('OF237B',rep('OF237A',5),rep('OF230',4),'OF237A','OF245','OF248','OF243','OF237A',rep('OF237B',9),rep('OF230',3),'OF237A',rep('OF235',3),'OF245'))
 of.tab <- of.tab %>% arrange(outfall,locid)
 
-
 # arrange sediment traps by outfall grouping
 a03 <- a03 %>% left_join(.,of.tab)
 a03 <- a03 %>% mutate(locid=factor(locid,levels=of.tab$locid,ordered = T))
-
-
-
-
-
 
 # eliminate cocs with insufficient data
 tmp <- a03 %>% group_by(coc,units) %>% summarise(mx.d=max(date),N=n(),Nloc=length(unique(locid)),n.per.loc=round(N/Nloc,1),ave=mean(conc),med=median(conc),min=min(conc),max=max(conc),.groups = 'drop')
 
 coc.elim <- tmp %>% filter(n.per.loc < 4.5 | mx.d < ymd('2021-01-01')) %>% pus(coc)
-
 
 a04 <- a03 %>% filter(!coc %in% coc.elim)
 
@@ -128,8 +120,6 @@ box.outfall <- f %>% group_by(coc) %>% do(plot={
   print(eplot(.,thead=hdr,'box',vx=outfall,vfill=outfall,rotate.lab = T,pt.size = 1.5,varwidth=T))
 })
 dev.off()
-
-
 
 
 ## Time Series Plots ----
