@@ -17,6 +17,10 @@ library(boot)
 library(magrittr)
 library(RColorBrewer)
 
+
+source("scripts/eplot.R")
+source("scripts/pus.R")
+
 ## source('eplot.R')
 ## source('trend_map_compute.R')
 ## source('trend_map_plot.R)
@@ -24,7 +28,6 @@ library(RColorBrewer)
 ## source('ci_band_lm.R')
 ## source('ci_band_plot.R')
 ## source('trend_map.R')
-## source('pus.R')
 ## source('add_gis.R')
 ## source('convex_hull.R')
 ## source('oneway_mc_plot.R')
@@ -51,7 +54,7 @@ fdate <- format.Date(Sys.Date(),format='%y%m%d')
 
 # WRANGLE ----
 
-a0 <- read_excel('AllWYSedTrap2021_kc.xlsx',col_types = c(rep('text',10),'date',rep('text',6),'numeric','text',rep('numeric',4),rep('text',3),rep('numeric',2),'text'))
+a0 <- read_excel('data_raw/AllWYSedTrap2021_kc.xlsx',col_types = c(rep('text',10),'date',rep('text',6),'numeric','text',rep('numeric',4),rep('text',3),rep('numeric',2),'text'))
 
 a00 <- a0 %>% select(-c(data_provider,matrix_desc,matrix_code,sample_name,sample_class,fraction_desc,MTCASTAT_input,half_ND,log_halfND,pthal_sum,for_stats_5yr,`qual code 2013`))
 a00 <- a00 %>% mutate(id=1:n())
