@@ -168,8 +168,6 @@ tsplots.outfall.loess <- f %>% group_by(coc) %>% do(plot={
 dev.off()
 
 
-
-
 # TREND TESTING/MAPPING ----
 
 ## import coordinates
@@ -269,8 +267,6 @@ trap.trendmap.plots.5y <- trap.trend.map.5y %>% group_by(coc) %>% do(plot={
   trend_map_plot(tmap,period='2017-01-01',hdr=hdr,gis=F,gis.lst=NULL,bex=0.01,interact=F,wlabs=T)
 }) %>% ungroup()
 dev.off()
-
-
 
 # ONE-WAY COMPARISONS ----
 outfall.oneway.tests <- f %>% group_by(coc) %>% do({
