@@ -169,28 +169,6 @@ dev.off()
 
 
 
-## Violin Plots ----
-fn <- paste0(site.filetag,'_violinplots_ByTrap_',fdate,'.pdf')
-pdf(file=fn,w=11,h=8.5)
-vplots.trap <- f %>% group_by(coc) %>% do(plot={
-  tcoc <- .$coc[1]
-  print(tcoc)
-  hdr= paste0('Violin Plots for ',tcoc,' By Sediment Trap')
-  print(eplot(.,thead=hdr,'violin',vx=locid,vfill=outfall,rotate.lab = T,pt.size = 1.5))
-})
-dev.off()
-
-
-fn <- paste0(site.filetag,'_violinplots_ByOutfall_',fdate,'.pdf')
-pdf(file=fn,w=11,h=8.5)
-vplots.outfall <- f %>% group_by(coc) %>% do(plot={
-  tcoc <- .$coc[1]
-  print(tcoc)
-  hdr= paste0('Violin Plots for ',tcoc,' for Sediment Traps Grouped by Outfall')
-  print(eplot(.,thead=hdr,'violin',vx=outfall,vfill=outfall,rotate.lab = T,pt.size = 1.5))
-})
-dev.off()
-
 
 # TREND TESTING/MAPPING ----
 
