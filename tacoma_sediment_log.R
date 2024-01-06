@@ -17,21 +17,21 @@ library(boot)
 library(magrittr)
 library(RColorBrewer)
 
-
+source("scripts/convex_hull.R")
 source("scripts/eplot.R")
+source("scripts/mc_vector.R")
 source("scripts/pus.R")
+source("scripts/trend_lm.R")
+source("scripts/trend_map.R")
+source("scripts/trend_map_compute.R")
+source("scripts/trend_map_plot.R")
 
-## source('trend_map_compute.R')
-## source('trend_map_plot.R)
 ## source('oneway_mc.R')
 ## source('ci_band_lm.R')
 ## source('ci_band_plot.R')
-## source('trend_map.R')
 ## source('add_gis.R')
-## source('convex_hull.R')
 ## source('oneway_mc_plot.R')
 ## source('ci_compute.R')
-## source('mc_vector.R')
 ## source('ci_boot.R')
 ## source('whdquantile.R')
 ## source('wquantile_generic.R')
@@ -174,7 +174,7 @@ dev.off()
 
 ## import coordinates
 outfall.loc0 <- read_excel("data_raw/EIMLocation2021_kc.xlsx")
-trap.loc0 <- read_excel('/Users/kcmacstat/MacStat/Herrera-Tacoma Project/2010 SED TRAP LOCATIONS_kc.xlsx')
+trap.loc0 <- read_excel("data_raw/2010 SED TRAP LOCATIONS_kc.xlsx")
 
 outfall.loc <- outfall.loc0 %>% select(c(loc_id,loc_name,lon,lat)) %>% mutate(outfall=c('OF237B','OF235','OF245','OF243','OF254','OF230','OF237A','RG15CUW','FD2_237A','FD6_235','FD3NEW_230'))
 
