@@ -16,10 +16,6 @@ library(lmPerm)
 library(boot)
 library(magrittr)
 library(RColorBrewer)
-library(raster)
-
-
-## R.utils::sourceDirectory(path='/Users/kcmacstat/Stats-Research/MacStat R Code',modifiedOnly=F)
 
 ## source('eplot.R')
 ## source('trend_map_compute.R')

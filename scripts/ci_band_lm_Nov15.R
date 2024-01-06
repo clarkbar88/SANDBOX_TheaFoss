@@ -32,7 +32,7 @@ ci_band_lm <- function(f,y=conc,nd=nd,clev=0.95,side=c('upr','lwr','both'),ns=50
   nd.pct <- with(f,inject(round(100*mean(!!nd,na.rm=T),1)))
   any.nd <- with(f,inject(any(!!nd == 1)))
   
-  f <- f %>% filter(!(is.na(date) | is.na(!!y)))
+  f <- f %>% dplyr::filter(!(is.na(date) | is.na(!!y)))
   f <- f %>% mutate(conc.half=case_when(!!nd==0~!!y,!!nd==1~!!y/2))
   
 ##  set.seed(rseed,kind = "L'Ecuyer-CMRG")
@@ -130,7 +130,7 @@ ci_band_lm <- function(f,y=conc,nd=nd,clev=0.95,side=c('upr','lwr','both'),ns=50
   }
 
 # remove high leverage pts and/or extreme outliers and recompute linear fit
-  if (any(hi.lev) || any(esi.out)) f <- f %>% filter(!(hi.lev | esi.out))
+  if (any(hi.lev) || any(esi.out)) f <- f %>% dplyr::filter(!(hi.lev | esi.out))
     
   if (!any.nd) {
     lm0 <- inject(lm(!!y~x,data=f))

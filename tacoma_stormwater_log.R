@@ -335,7 +335,7 @@ fn <- paste0(site.filetag,'_outfall_pctdiff_5y_',fdate,'.csv')
 write_excel_csv(outfall.pctdiff.5y,file=fn)
 
 # SAVE PROJECT ----
-fdate <- format.Date(Sys.Date(),format='%y%m%d')
-fn <- paste0(tolower(site.filetag),'_',fdate,'.rda')
-save.image(fn)
+# fdate <- format.Date(Sys.Date(),format='%y%m%d')
+# fn <- paste0(tolower(site.filetag),'_',fdate,'.rda')
+# save.image(fn)
 
