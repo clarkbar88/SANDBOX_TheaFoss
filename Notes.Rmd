@@ -14,4 +14,6 @@ Unable to do a complete run. Issue is the "cannot be applied to class double, nu
 
 Sediment:
 
+GOF tests break at the cov.wt() at Total PCBs FD-6. When that compound is removed, the GOF runs.
+Same issue on cband calculations for sediment. 
 Oneway tests are only for Outfall, not by trap. This is present in the original repository too.

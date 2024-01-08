@@ -40,11 +40,12 @@ source("scripts/whdquantile.R")
 source("scripts/wquantile_generic.R")
 
 
-## source('ci_band_plot.R')
-## source('add_gis.R')
-## source('whdquantile.R')
-## source('wquantile_generic.R')
-
+## Goodness of fit packages
+source("OriginalGOFFunctions/gof_impute_km.R")
+source("OriginalGOFFunctions/gof_km.R")
+source("OriginalGOFFunctions/lop.R")
+source("OriginalGOFFunctions/pp_km.R")
+source("OriginalGOFFunctions/qqcor_dotchart.R")
 
 
 
@@ -96,15 +97,14 @@ coc.elim <- tmp %>% filter(n.per.loc < 4.5 | mx.d < ymd('2021-01-01')) %>% pus(c
 
 a04 <- a03 %>% filter(!coc %in% coc.elim)
 
-f <- a04
-
+f <- a04 %>%
+  filter(coc != "Total PCBs")
 
 
 
 # EXPLORE ----
 
-# GOF Plots ----
-
+# GOF Plots ---- #TODO: Breaks on the Total PCBs. Works when they are removed.
 fn <- paste0(site.filetag,'_GOF_ByOutfall_',fdate,'.pdf')
 pdf(file=fn,w=11,h=8.5)
 gof.example <- f |> nest_by(coc,locid) |> dplyr::mutate(out=list({
@@ -114,7 +114,7 @@ gof.example <- f |> nest_by(coc,locid) |> dplyr::mutate(out=list({
   print(lst$qplot)
   print(lst$dplot)
   lst$rtab
-  print(paste(tcoc, tloc))
+  print(paste(tcoc,tloc))
 })) |> ungroup() |> dplyr::select(c(coc,locid,out)) |> unnest(cols = c(out))
 dev.off()
 
@@ -313,7 +313,7 @@ write_excel_csv(outfall.oneway.tests,file=fn)
 
 
 
-## Linear Confidence Bands ----
+## Linear Confidence Bands ---- #TODO: Same breakage here for filter class.
 outfall.pair.cband <- f %>% group_by(coc,outfall) %>% do({
   td <- .
   tcoc <- td$coc[1]; tout <- td$outfall[1]
