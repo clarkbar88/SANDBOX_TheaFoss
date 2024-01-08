@@ -341,7 +341,7 @@ dev.off()
 
 
 # SAVE PROJECT ----
-fdate <- format.Date(Sys.Date(),format='%y%m%d')
-fn <- paste0(tolower(site.filetag),'_',fdate,'.rda')
-save.image(fn)
+# fdate <- format.Date(Sys.Date(),format='%y%m%d')
+# fn <- paste0(tolower(site.filetag),'_',fdate,'.rda')
+# save.image(fn)
 
