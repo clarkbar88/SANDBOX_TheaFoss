@@ -103,6 +103,21 @@ f <- a04
 
 # EXPLORE ----
 
+# GOF Plots ----
+
+fn <- paste0(site.filetag,'_GOF_ByOutfall_',fdate,'.pdf')
+pdf(file=fn,w=11,h=8.5)
+gof.example <- f |> nest_by(coc,locid) |> dplyr::mutate(out=list({
+  tcoc <- coc[1]; tloc <- locid[1]
+  hdr <- paste0('GOF Plots for ',tcoc,' at Location ',tloc)
+  lst <- gof_km(data,hdr=hdr)
+  print(lst$qplot)
+  print(lst$dplot)
+  lst$rtab
+  print(paste(tcoc, tloc))
+})) |> ungroup() |> dplyr::select(c(coc,locid,out)) |> unnest(cols = c(out))
+dev.off()
+
 ## Box Plots ----
 fn <- paste0(site.filetag,'_boxplots_ByTrap_',fdate,'.pdf')
 pdf(file=fn,w=11,h=8.5)

@@ -272,7 +272,7 @@ write_excel_csv(outfall.oneway.tests.5y,file=fn)
 
 
 
-# CI BANDS, PCT REDUCTIONS ----
+# CI BANDS, PCT REDUCTIONS ---- #TODO: Breaks here
 outfall.pair.cband <- f %>% group_by(coc,locid) %>% do({
   tcoc <- .$coc[1]; tloc <- .$locid[1]
   print(paste(tcoc,tloc))
@@ -293,7 +293,7 @@ outfall.cband.plots <- outfall.pair.cband %>% group_by(coc) %>% do(plot={
 dev.off()
 
 
-## Last 5 year bands and plots
+## Last 5 year bands and plots #TODO: Breaks here
 outfall.pair.cband.5y <- f %>% filter(date >= ymd('2017-01-01')) %>% group_by(coc,locid) %>% do({
   tcoc <- .$coc[1]; tloc <- .$locid[1]
   print(paste(tcoc,tloc))
