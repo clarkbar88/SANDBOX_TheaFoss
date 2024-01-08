@@ -12,3 +12,5 @@ Goodness of fit tests are close but not identical. Ladder of powers shows slight
 Unable to do a complete run. Issue is the "cannot be applied to class double, numeric" issue in the cband calculations.
 
 Sediment:
+
+Oneway tests are only for Outfall, not by trap. This is present in the original repository too.
