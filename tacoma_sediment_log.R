@@ -98,7 +98,7 @@ coc.elim <- tmp %>% filter(n.per.loc < 4.5 | mx.d < ymd('2021-01-01')) %>% pus(c
 a04 <- a03 %>% filter(!coc %in% coc.elim)
 
 f <- a04 %>%
-  filter(coc != "Total PCBs")
+  filter(coc == "Total PCBs")
 
 
 
