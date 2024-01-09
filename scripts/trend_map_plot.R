@@ -22,7 +22,7 @@
 
 trend_map_plot <- function(map,period='hist',locid=locid,hdr,gis=F,gis.lst=NULL,bex=0.01,interact=T,wlabs=F) {
   library(tidyverse)
-  library(vcd)
+ # library(vcd) isn't used
   library(plotly)
   library(htmlwidgets)
   library(ggrepel)

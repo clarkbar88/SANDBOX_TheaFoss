@@ -44,7 +44,7 @@ source("scripts/wquantile_generic.R")
 source("OriginalGOFFunctions/gof_impute_km.R")
 source("OriginalGOFFunctions/gof_km.R")
 source("OriginalGOFFunctions/lop.R")
-source("OriginalGOFFunctions/pp_km.R")
+#source("OriginalGOFFunctions/pp_km.R") already have pp_km above
 source("OriginalGOFFunctions/qqcor_dotchart.R")
 
 
@@ -98,9 +98,11 @@ coc.elim <- tmp %>% filter(n.per.loc < 4.5 | mx.d < ymd('2021-01-01')) %>% pus(c
 a04 <- a03 %>% filter(!coc %in% coc.elim)
 
 f <- a04 %>%
-  filter(coc != "Total PCBs")
+  filter(coc == "Total PCBs") 
+###RECOMMEND FINDING THE TRUE MDL FOR PCBS
 
-
+f_pcbs_fd6A<-a04 %>%
+  filter(coc == "Total PCBs"&locid=='FD-6A')
 
 # EXPLORE ----
 
@@ -110,11 +112,12 @@ pdf(file=fn,w=11,h=8.5)
 gof.example <- f |> nest_by(coc,locid) |> dplyr::mutate(out=list({
   tcoc <- coc[1]; tloc <- locid[1]
   hdr <- paste0('GOF Plots for ',tcoc,' at Location ',tloc)
+  #moving the prints to before the function, so if an error occurs, you know when
+  print(paste(tcoc,tloc))
   lst <- gof_km(data,hdr=hdr)
   print(lst$qplot)
   print(lst$dplot)
   lst$rtab
-  print(paste(tcoc,tloc))
 })) |> ungroup() |> dplyr::select(c(coc,locid,out)) |> unnest(cols = c(out))
 dev.off()
 

@@ -85,9 +85,16 @@ lop <- function(f,y=conc,nd=nd,wt,hdr,ns=20,...) {
     tlab <- tf.f$tf.lab
     td <- fpp |> mutate(qd=qnorm(pp))
     
-    if (edge.nd) {
+    #add an ALL ND option for to just shortcut to the all NA
+    if (all.nd) {
       cor.v <- map_dbl(tlab,.f=function(.x,xf) {
-        xf |> mutate(yt=trans(y.r,.x),bad=is.na(yt) | is.nan(yt) | is.infinite(yt)) |> summarise(corr=case_when(any(bad)~NA_real_,sd(y.r)==0~0,.default = cov.wt(tibble(yt[!bad],qd[!bad]),wt=pp.wt[!bad],cor=T)$cor[2,1])) |> pull(corr)
+        xf |> mutate(yt=trans(y.r,.x),bad=is.na(yt) | is.nan(yt) | is.infinite(yt)) |> 
+          summarise(corr=NA_real_)|> pull(corr)
+      },xf=td)
+    } else if (edge.nd) {
+      cor.v <- map_dbl(tlab,.f=function(.x,xf) {
+        xf |> mutate(yt=trans(y.r,.x),bad=is.na(yt) | is.nan(yt) | is.infinite(yt)) |> 
+          summarise(corr=case_when(any(bad)~NA_real_,sd(y.r)==0~0,.default = cov.wt(tibble(yt[!bad],qd[!bad]),wt=pp.wt[!bad],cor=T)$cor[2,1])) |> pull(corr)
       },xf=td)
     } else if (!edge.nd) {
       cor.v <- map_dbl(tlab,.f=function(.x,xf) {

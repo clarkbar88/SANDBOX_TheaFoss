@@ -20,7 +20,7 @@ gof_km <- function(f,y=conc,nd=nd,wt,hdr,pt.size=2) {
   
   library(tidyverse)
   library(robustbase)
-  library(DescTools)
+#  library(DescTools)
   library(rlang)
   
   #  source('lop.R')
@@ -68,6 +68,7 @@ gof_km <- function(f,y=conc,nd=nd,wt,hdr,pt.size=2) {
   tmax <- tf.list$corr.place$tf[1]
   corr.max <- tf.list$corr.place$tcorr[1]
   lab.max <- tf.list$corr.place$tf.lab[1]
+  if(all(f$y==0)){corr.max=1;lab.max="Normal"} #quickfix to allow to not cause a log-transformation of zero when no goodness fits
   pow <- ifelse(tmax=='log',NA_real_,as.numeric(tmax))
   
   # transform detects and impute any non-detects according to best robust model

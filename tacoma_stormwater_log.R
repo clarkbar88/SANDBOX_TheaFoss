@@ -46,7 +46,7 @@ source("scripts/wquantile_generic.R")
 source("OriginalGOFFunctions/gof_impute_km.R")
 source("OriginalGOFFunctions/gof_km.R")
 source("OriginalGOFFunctions/lop.R")
-source("OriginalGOFFunctions/pp_km.R")
+#source("OriginalGOFFunctions/pp_km.R") already have pp_km above
 source("OriginalGOFFunctions/qqcor_dotchart.R")
 
 
@@ -272,7 +272,7 @@ write_excel_csv(outfall.oneway.tests.5y,file=fn)
 
 
 
-# CI BANDS, PCT REDUCTIONS ---- #TODO: Breaks here
+# CI BANDS, PCT REDUCTIONS ---- #TODO: Breaks here #TC: Seems to work after using scripts/pp_km.R instead
 outfall.pair.cband <- f %>% group_by(coc,locid) %>% do({
   tcoc <- .$coc[1]; tloc <- .$locid[1]
   print(paste(tcoc,tloc))
@@ -293,7 +293,7 @@ outfall.cband.plots <- outfall.pair.cband %>% group_by(coc) %>% do(plot={
 dev.off()
 
 
-## Last 5 year bands and plots #TODO: Breaks here
+## Last 5 year bands and plots #TODO: Breaks here #TC: Seems to work after using scripts/pp_km.R instead
 outfall.pair.cband.5y <- f %>% filter(date >= ymd('2017-01-01')) %>% group_by(coc,locid) %>% do({
   tcoc <- .$coc[1]; tloc <- .$locid[1]
   print(paste(tcoc,tloc))
