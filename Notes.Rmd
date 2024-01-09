@@ -3,17 +3,33 @@ title: "Notes"
 author: "Regina Lionheart"
 date: "2024-01-05"
 output: html_document
+editor_options: 
+  markdown: 
+    wrap: sentence
 ---
 
-Stormwater:
+## Stormwater:
 
-Oneway tests: csvs are very close but not identical. Images are essentially identical.
-Goodness of fit tests are close but not identical. Ladder of powers shows slightly different results.
-Unable to do a complete run. Issue is the "cannot be applied to class double, numeric" issue in the cband calculations. True for both individual and 5y section.
+Oneway tests: csvs are very close but not identical.
+Images are essentially identical.
+Goodness of fit tests are close but not identical.
+Ladder of powers shows slightly different results.
+Unable to do a complete run.
+Issue is the "cannot be applied to class double, numeric" issue in the cband calculations.
+True for both individual and 5y section.
 
+```         
+"2-Methylnaphthalene OF245" Error in `map()` at scripts/ci_band_lm_Nov15.R:159:4: ℹ In index: 1. Caused by error in `UseMethod()`: ! no applicable method for 'filter' applied to an object of class "c('double', 'numeric')"
+```
 
-Sediment:
+## Sediment:
 
-GOF tests break at the cov.wt() at Total PCBs FD-6. When that compound is removed, the GOF runs.
-Same issue on cband calculations for sediment. 
-Oneway tests are only for Outfall, not by trap. This is present in the original repository too.
+GOF tests break at the cov.wt() at Total PCBs FD-6.
+When that compound is removed, the GOF runs.
+Same issue on cband calculations for sediment.
+Oneway tests are only for Outfall, not by trap.
+This is present in the original repository too.
+
+```         
+Error in `dplyr::mutate()`: ℹ In argument: `out = list(...)`. Caused by error in `mutate()` at OriginalGOFFunctions/lop.R:104:4: ℹ In argument: `tab = list(...)`. Caused by error in `mutate()` at OriginalGOFFunctions/lop.R:106:6: ℹ In argument: `tcorr = assemble_cor(f.pp, edge.nd = T)`. Caused by error in `map_dbl()` at OriginalGOFFunctions/lop.R:89:6: ℹ In index: 1. Caused by error in `summarise()` at OriginalGOFFunctions/lop.R:90:8: ℹ In argument: `corr = case_when(...)`. Caused by error in `cov.wt()`: ! weights must be non-negative and not all zero
+```
